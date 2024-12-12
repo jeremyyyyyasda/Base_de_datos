@@ -1,0 +1,404 @@
+/* Reset de márgenes y padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos generales del body */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
+  font-size: 16px;
+  line-height: 1.5;
+  padding-top: 80px; /* Compensación para la barra de navegación fija */
+  overflow-x: hidden;
+}
+
+/* Barra de navegación */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  padding: 1.5rem 3rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-right: 2rem;
+}
+
+nav ul li a {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+nav ul li a:hover {
+  color: #007aff;
+  text-shadow: 0 0 10px #007aff;
+  transform: scale(1.1);
+}
+
+/* Ajuste para contenido debajo de la barra */
+header, section, main, .info-box {
+  scroll-margin-top: 120px; /* Espacio para que las secciones no queden tapadas */
+}
+
+/* Sección de Introducción */
+.intro {
+  margin-top: 120px;
+  padding: 8rem 3rem;
+  background-color: #1d1d1d;
+  color: #f0f0f0;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid #333;
+}
+
+.intro h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #f0f0f0;
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  animation: fadeIn 2s ease-out;
+}
+
+.intro p {
+  font-size: 1.5rem;
+  color: #ccc;
+  margin-bottom: 2rem;
+  animation: fadeIn 2s ease-out 1s;
+}
+
+button {
+  background-color: #007aff;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 30px;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: #0051a8;
+  transform: translateY(-5px);
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Animación de desvanecimiento para el texto */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Sección de Proyectos */
+#proyectos {
+  margin-top: 5rem;
+  padding: 3rem 3rem;
+  background-color: #121212;
+  text-align: center;
+}
+
+#proyectos h2 {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  animation: fadeIn 2s ease-out;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.project-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1500px;
+  height: 500px;
+}
+
+.project-wrapper {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  transform-style: preserve-3d;
+  animation: rotateRing 20s infinite linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  transform-origin: 50% 50%;
+  transition: transform 0.3s ease;
+}
+
+.project img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Zoom y rotación de la imagen al pasar el mouse */
+.project img:hover {
+  transform: scale(1.2) rotateY(15deg);
+}
+
+/* Distancia entre los proyectos */
+.project:nth-child(1) {
+  transform: rotateY(0deg) translateZ(400px);
+}
+
+.project:nth-child(2) {
+  transform: rotateY(45deg) translateZ(400px);
+}
+
+.project:nth-child(3) {
+  transform: rotateY(90deg) translateZ(400px);
+}
+
+.project:nth-child(4) {
+  transform: rotateY(135deg) translateZ(400px);
+}
+
+.project:nth-child(5) {
+  transform: rotateY(180deg) translateZ(400px);
+}
+
+.project:nth-child(6) {
+  transform: rotateY(225deg) translateZ(400px);
+}
+
+.project:nth-child(7) {
+  transform: rotateY(270deg) translateZ(400px);
+}
+
+.project:nth-child(8) {
+  transform: rotateY(315deg) translateZ(400px);
+}
+
+/* Animación de rotación */
+@keyframes rotateRing {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* Estilo para el texto de los proyectos */
+.project p {
+  color: #fff;
+  font-size: 1.5rem;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+  margin-top: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Pie de página */
+footer {
+  margin-top: 6rem;
+  padding: 2rem 0;
+  background-color: #111;
+  color: #ecf0f1;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+footer a {
+  color: #007aff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* Estilos específicos para el módulo 6 */
+body.modulo-6 {
+  font-family: Arial, sans-serif;
+  background-color: #000000;
+  color: #333;
+  padding-top: 80px;
+}
+
+body.modulo-6 nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #333;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.modulo-6 nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+body.modulo-6 nav ul li {
+  margin: 0 1rem;
+}
+
+body.modulo-6 nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+body.modulo-6 nav ul li a:hover {
+  color: #007aff;
+}
+
+body.modulo-6 header {
+  text-align: center;
+  background-color: #007aff;
+  color: white;
+  padding: 2rem 0;
+}
+
+body.modulo-6 header h1 {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+body.modulo-6 main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+body.modulo-6 .info-box {
+  background-color: white;
+  border: 2px solid #007aff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+body.modulo-6 .info-box:hover {
+  transform: scale(1.02);
+}
+
+body.modulo-6 pre {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+/* Estilos específicos para la página de Semana 8 */
+.semana8 {
+  font-family: Arial, sans-serif;
+}
+
+.introduccion-semana8 {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.introduccion-semana8 h1 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.introduccion-semana8 p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.archivo {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+iframe {
+  width: 100%;
+  height: 600px;
+  border: 1px solid #ccc;
+}
+
+.introduccion-semana8 a {
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.introduccion-semana8 button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.introduccion-semana8 button:hover {
+  background-color: #45a049;
+}
+
+header nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+

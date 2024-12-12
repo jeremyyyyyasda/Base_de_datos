@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 6</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="modulo-6">>
+  <!-- Barra de navegación -->
+  <nav>
+    <ul>
+      <li><a href="index.html#introduccion">Inicio</a></li>
+      <li><a href="index.html#proyectos#introduccion">Proyectos</a></li>
+    </ul>
+  </nav>
+  <!-- Encabezado -->
+  <header>
+    <h1>Transacciones en Transact-SQL</h1>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <div class="info-box">
+      <p>
+        Una transacción en Transact-SQL se define como una unidad lógica de trabajo que garantiza que la base de datos 
+        pase de un estado consistente a otro. Este concepto es fundamental en la gestión de bases de datos, ya que asegura que 
+        todas las operaciones realizadas dentro de una transacción se ejecuten completamente o no se realicen en absoluto, 
+        manteniendo la integridad y consistencia de los datos.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <p>
+        Las transacciones poseen cuatro propiedades esenciales, conocidas como ACID: Atomicidad, Consistencia, Aislamiento y Durabilidad. 
+        Estas propiedades trabajan en conjunto para garantizar que los datos en la base de datos permanezcan fiables incluso ante fallos 
+        del sistema, interrupciones inesperadas o errores durante las operaciones. Atomicidad implica que cada transacción sea indivisible; 
+        es decir, todas sus operaciones deben completarse o revertirse. La consistencia asegura que cualquier transacción lleve a la base de 
+        datos de un estado válido a otro, evitando violaciones en las reglas de integridad. El aislamiento permite que las transacciones se 
+        ejecuten sin interferir unas con otras, mientras que la durabilidad garantiza que los cambios confirmados persistan aunque el sistema falle.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <p>
+        Los principales comandos utilizados en Transact-SQL para manejar transacciones son: <em>BEGIN TRANSACTION</em>, que inicia una nueva 
+        transacción; <em>COMMIT</em>, que confirma y guarda los cambios realizados; y <em>ROLLBACK</em>, que revierte todos los cambios si ocurre 
+        algún error. Estos comandos ofrecen a los desarrolladores un control detallado sobre las operaciones que afectan los datos, permitiéndoles 
+        manejar escenarios complejos con confianza.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <p>
+        Por ejemplo, considera una transacción que incluye la inserción de un nuevo cliente en una tabla y la actualización del saldo de una cuenta. 
+        Si cualquiera de estas operaciones falla, la transacción completa puede deshacerse para evitar inconsistencias en los datos. 
+        Un ejemplo de código típico en Transact-SQL sería el siguiente:
+      </p>
+      <pre>
+BEGIN TRANSACTION;
+
+-- Inserción de un nuevo cliente
+INSERT INTO Clientes (Nombre, Email) 
+VALUES ('Juan Pérez', 'juan.perez@email.com');
+
+-- Actualización del saldo de una cuenta
+UPDATE Cuentas 
+SET Saldo = Saldo - 100 
+WHERE CuentaID = 1;
+
+-- Confirmar la transacción si todo es exitoso
+COMMIT;
+
+-- Deshacer los cambios en caso de error
+ROLLBACK;
+      </pre>
+    </div>
+
+    <div class="info-box">
+      <p>
+        Las transacciones no solo mejoran la confiabilidad de las aplicaciones, sino que también simplifican la gestión de errores en operaciones 
+        complejas, especialmente en sistemas críticos donde varias acciones deben ejecutarse juntas. No obstante, su uso requiere una planificación 
+        cuidadosa para evitar bloqueos y problemas de rendimiento, asegurando que las transacciones sean lo más breves y eficientes posible.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <p>
+        En resumen, las transacciones en Transact-SQL son herramientas poderosas que permiten a los desarrolladores garantizar la seguridad e 
+        integridad de los datos. A través de sus propiedades ACID y comandos bien diseñados, proporcionan una base sólida para el desarrollo de 
+        aplicaciones confiables y robustas en el manejo de bases de datos.
+      </p>
+    </div>
+  </main>
+</body>
+</html>

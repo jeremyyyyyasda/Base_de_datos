@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguridad en SQL Server 2008</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="modulo-6">
+  <!-- Barra de navegación -->
+  <nav>
+    <ul>
+      <li><a href="index.html#introduccion">Inicio</a></li>
+      <li><a href="index.html#proyectos#introduccion">Proyectos</a></li>
+    </ul>
+  </nav>
+
+  <!-- Encabezado -->
+  <header>
+    <h1>Seguridad en SQL Server 2008</h1>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <div class="info-box">
+      <p>
+        SQL Server 2008 introdujo un marco robusto de seguridad diseñado para proteger los datos en diversas condiciones. 
+        Este sistema se enfoca en proporcionar una gestión precisa de los permisos, protegiendo contra accesos no autorizados 
+        y permitiendo un control granular de los datos. 
+        La seguridad se logra mediante una combinación de autenticación, autorización y administración de credenciales.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <p>
+        Un aspecto fundamental en SQL Server 2008 es la comprensión de los modos de seguridad. Existen dos principales:
+        <strong>Modo de autenticación de Windows</strong> y <strong>Modo mixto</strong>. 
+        El Modo de autenticación de Windows utiliza las cuentas del sistema operativo para validar a los usuarios, 
+        aprovechando los controles de Active Directory para una gestión centralizada. Por otro lado, el Modo mixto permite 
+        tanto la autenticación de Windows como la autenticación de SQL Server, lo que proporciona flexibilidad para entornos híbridos.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <p>
+        Las credenciales desempeñan un papel vital en el sistema de seguridad de SQL Server 2008. 
+        Una credencial es un objeto de base de datos que contiene información de autenticación necesaria para conectar 
+        recursos externos, como servidores o servicios. Estas credenciales permiten a SQL Server ejecutar operaciones 
+        bajo contextos de seguridad específicos, asegurando que las tareas críticas se realicen con los permisos adecuados.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <p>
+        La configuración de credenciales comienza con la creación de una entrada que asocia un nombre a la información de acceso 
+        requerida. Posteriormente, se pueden mapear estas credenciales a cuentas de inicio de sesión o proxies utilizados en trabajos 
+        del Agente de SQL Server. Este mecanismo asegura un nivel adicional de protección, ya que los accesos se limitan estrictamente 
+        a las credenciales autorizadas.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <p>
+        Un ejemplo práctico del uso de credenciales podría ser la ejecución de un paquete SSIS que requiere acceder a un servidor FTP 
+        externo. En lugar de almacenar las credenciales directamente en el código, se crea una credencial en SQL Server, y el paquete 
+        se configura para utilizarla. Esto no solo mejora la seguridad, sino que también facilita la administración de las contraseñas.
+      </p>
+      <pre>
+-- Crear una credencial
+CREATE CREDENTIAL MiCredencial
+WITH IDENTITY = 'usuarioFTP', 
+SECRET = 'contraseñaSegura';
+
+-- Asociar la credencial a un inicio de sesión
+ALTER LOGIN MiLogin
+WITH CREDENTIAL = MiCredencial;
+      </pre>
+    </div>
+
+    <div class="info-box">
+      <p>
+        En resumen, la seguridad en SQL Server 2008 se basa en un modelo sólido y flexible que combina modos de autenticación 
+        ajustados a las necesidades del entorno y el uso eficiente de credenciales. Este enfoque garantiza que los datos 
+        permanezcan protegidos y accesibles solo para usuarios autorizados, proporcionando confianza y control en la administración de bases de datos.
+      </p>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>&copy; 2024 Jeremy Joel Chancasanampa García | Todos los derechos reservados</p>
+  </footer>
+</body>
+</html>

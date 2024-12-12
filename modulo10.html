@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 10</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="modulo-6">
+  <!-- Barra de navegación -->
+  <nav>
+    <ul>
+      <li><a href="index.html#introduccion">Inicio</a></li>
+      <li><a href="index.html#proyectos#introduccion">Proyectos</a></li>
+    </ul>
+  </nav>
+
+  <!-- Encabezado -->
+  <header>
+    <h1>Mantenimiento de la Base de Datos</h1>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <div class="info-box">
+      <h2>Introducción</h2>
+      <p>
+        El mantenimiento de bases de datos es fundamental para garantizar un rendimiento óptimo, la disponibilidad de los datos y la prevención de problemas como corrupción o pérdida de información. Este proceso incluye tareas regulares como optimización de índices, limpieza de registros y actualización de estadísticas.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h2>Optimización de Índices</h2>
+      <p>
+        Los índices pueden fragmentarse con el tiempo, afectando el rendimiento de las consultas. SQL Server ofrece herramientas para reorganizar o reconstruir índices, dependiendo del nivel de fragmentación.
+      </p>
+      <pre>
+-- Identificar la fragmentación de índices
+SELECT 
+    DB_NAME() AS DatabaseName, 
+    OBJECT_NAME(ips.object_id) AS TableName, 
+    i.name AS IndexName, 
+    ips.avg_fragmentation_in_percent
+FROM sys.dm_db_index_physical_stats(DB_ID(), NULL, NULL, NULL, NULL) AS ips
+JOIN sys.indexes AS i
+ON ips.object_id = i.object_id AND ips.index_id = i.index_id;
+
+-- Reorganizar índices (fragmentación baja)
+ALTER INDEX NombreIndice ON NombreTabla REORGANIZE;
+
+-- Reconstruir índices (fragmentación alta)
+ALTER INDEX NombreIndice ON NombreTabla REBUILD;
+      </pre>
+    </div>
+
+    <div class="info-box">
+      <h2>Limpieza de Registros</h2>
+      <p>
+        Las bases de datos acumulan datos no necesarios con el tiempo, como registros de auditoría antiguos o datos temporales. Estas tareas pueden automatizarse con trabajos del Agente de SQL Server.
+      </p>
+      <pre>
+-- Eliminar registros antiguos
+DELETE FROM Auditoria
+WHERE Fecha < DATEADD(MONTH, -6, GETDATE());
+      </pre>
+    </div>
+
+    <div class="info-box">
+      <h2>Actualización de Estadísticas</h2>
+      <p>
+        Las estadísticas son vitales para que el optimizador de consultas tome decisiones eficientes. Mantenerlas actualizadas mejora el rendimiento general.
+      </p>
+      <pre>
+-- Actualizar estadísticas para una tabla
+UPDATE STATISTICS NombreTabla;
+
+-- Actualizar estadísticas en toda la base de datos
+EXEC sp_updatestats;
+      </pre>
+    </div>
+
+    <div class="info-box">
+      <h2>Verificación de la Integridad</h2>
+      <p>
+        Es crucial verificar la integridad de los datos para detectar problemas en páginas o estructuras de almacenamiento. SQL Server proporciona herramientas como DBCC CHECKDB.
+      </p>
+      <pre>
+-- Verificar la integridad de la base de datos
+DBCC CHECKDB (NombreBaseDeDatos);
+      </pre>
+    </div>
+
+    <div class="info-box">
+      <h2>Respaldo y Monitoreo</h2>
+      <p>
+        Realizar respaldos periódicos y monitorear el sistema son prácticas esenciales del mantenimiento. Estas tareas deben planificarse según la criticidad de los datos y el uso de la base de datos.
+      </p>
+      <pre>
+-- Verificar el estado de la base de datos
+SELECT name, state_desc 
+FROM sys.databases;
+
+-- Realizar un respaldo completo
+BACKUP DATABASE NombreBaseDeDatos
+TO DISK = 'C:\Backups\NombreBaseDeDatos.bak';
+      </pre>
+    </div>
+
+    <div class="info-box">
+      <h2>Conclusión</h2>
+      <p>
+        El mantenimiento regular de bases de datos mejora su rendimiento, reduce riesgos de pérdida de datos y asegura su disponibilidad. Implementar buenas prácticas y automatizar tareas garantiza la eficiencia y confiabilidad del sistema.
+      </p>
+    </div>
+  </main>
+</body>
+</html>

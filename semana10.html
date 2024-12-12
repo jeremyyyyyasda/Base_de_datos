@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 10</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="modulo-6">
+  <!-- Barra de navegación -->
+  <nav>
+      
+        <ul>
+          <li><a href="index.html">Volver al Portafolio</a></li>
+        </ul>
+      
+    
+  </nav>
+
+  <!-- Encabezado -->
+  <header>
+    <h1>SQL Server 2008: Tablas, Vistas e Índices</h1>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <div class="info-box">
+      <h2>Introducción a SQL Server 2008</h2>
+      <p>
+        SQL Server 2008 es una plataforma de base de datos relacional ampliamente utilizada en aplicaciones empresariales. Entre sus características se encuentran la gestión avanzada de datos, seguridad mejorada, y soporte para consultas complejas. En este módulo, exploraremos cómo trabajar con tablas, vistas e índices en SQL Server 2008.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h2>Tablas en SQL Server 2008</h2>
+      <p>
+        Las tablas son la estructura básica en la que se almacenan los datos en una base de datos. Cada tabla tiene filas (registros) y columnas (campos). Para crear una tabla, usamos la instrucción `CREATE TABLE`.
+      </p>
+      <pre>
+-- Creación de una tabla llamada 'Empleados'
+CREATE TABLE Empleados (
+    EmpID INT PRIMARY KEY, 
+    Nombre NVARCHAR(100), 
+    Cargo NVARCHAR(50), 
+    FechaIngreso DATETIME
+);
+
+-- Insertar datos en la tabla 'Empleados'
+INSERT INTO Empleados (EmpID, Nombre, Cargo, FechaIngreso) 
+VALUES (1, 'Juan Pérez', 'Desarrollador', '2023-05-10'),
+       (2, 'Ana Gómez', 'Gerente', '2021-08-15');
+
+-- Consultar los datos de la tabla
+SELECT * FROM Empleados;
+      </pre>
+      <p>
+        En este ejemplo, hemos creado una tabla llamada "Empleados" con cuatro columnas: `EmpID`, `Nombre`, `Cargo`, y `FechaIngreso`. Luego, insertamos algunos registros y los consultamos.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h2>Vistas en SQL Server 2008</h2>
+      <p>
+        Las vistas son consultas predefinidas almacenadas en la base de datos que simplifican el acceso a los datos. Una vista no almacena datos físicamente, sino que ejecuta una consulta cada vez que se invoca. Las vistas son útiles para mostrar información filtrada y personalizada.
+      </p>
+      <pre>
+-- Crear una vista para obtener solo los empleados que son desarrolladores
+CREATE VIEW VistaDesarrolladores AS
+SELECT EmpID, Nombre, Cargo
+FROM Empleados
+WHERE Cargo = 'Desarrollador';
+
+-- Consultar los datos desde la vista
+SELECT * FROM VistaDesarrolladores;
+      </pre>
+      <p>
+        En este ejemplo, creamos una vista llamada "VistaDesarrolladores" que filtra los empleados con el cargo "Desarrollador". Luego consultamos la vista como si fuera una tabla.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h2>Índices en SQL Server 2008</h2>
+      <p>
+        Los índices mejoran el rendimiento de las consultas, especialmente cuando se trabaja con grandes volúmenes de datos. Un índice es una estructura de datos que permite un acceso rápido a las filas de una tabla. SQL Server crea índices automáticamente en claves primarias y foráneas, pero también puedes crear índices personalizados.
+      </p>
+      <pre>
+-- Crear un índice en la columna 'Cargo' de la tabla 'Empleados'
+CREATE INDEX IDX_Cargo ON Empleados (Cargo);
+
+-- Consultar los empleados que son 'Desarrolladores'
+SELECT * FROM Empleados WHERE Cargo = 'Desarrollador';
+      </pre>
+      <p>
+        En este ejemplo, creamos un índice llamado "IDX_Cargo" en la columna `Cargo` de la tabla "Empleados" para acelerar las consultas que filtren por esta columna. La consulta sobre la columna `Cargo` será más eficiente gracias a este índice.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h2>Creación de Índices Únicos</h2>
+      <p>
+        Un índice único asegura que los valores en la columna indexada sean únicos. Esto es útil cuando se necesita evitar valores duplicados en una columna específica.
+      </p>
+      <pre>
+-- Crear un índice único en la columna 'Email' de la tabla 'Empleados'
+CREATE UNIQUE INDEX IDX_Email ON Empleados (Email);
+      </pre>
+      <p>
+        Este índice garantiza que no haya duplicados en la columna `Email` de la tabla "Empleados".
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h2>Ventajas de Usar Vistas e Índices</h2>
+      <p>
+        Las vistas ofrecen una manera eficiente de simplificar las consultas complejas y garantizar que los usuarios vean solo los datos relevantes. Los índices, por otro lado, mejoran el rendimiento de las consultas y reducen el tiempo de respuesta, especialmente en tablas grandes.
+      </p>
+      <ul>
+        <li>Las vistas proporcionan seguridad al limitar el acceso a ciertas columnas y filas de una tabla.</li>
+        <li>Los índices mejoran significativamente la velocidad de lectura de los datos, pero pueden afectar el rendimiento de las inserciones y actualizaciones.</li>
+        <li>Es recomendable crear índices solo en las columnas que se usan con frecuencia en las consultas de búsqueda.</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h2>Conclusión</h2>
+      <p>
+        SQL Server 2008 ofrece potentes características para gestionar datos a través de tablas, vistas e índices. Usar estas herramientas de manera eficiente ayuda a mantener un rendimiento óptimo de las bases de datos y facilita la administración de la información. Las vistas simplifican las consultas, mientras que los índices mejoran la velocidad de búsqueda y acceso a los datos.
+      </p>
+    </div>
+  </main>
+</body>
+</html>

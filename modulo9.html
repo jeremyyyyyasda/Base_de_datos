@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 9</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="modulo-6">
+  <!-- Barra de navegación -->
+  <nav>
+    <ul>
+      <li><a href="index.html#introduccion">Inicio</a></li>
+      <li><a href="index.html#proyectos#introduccion">Proyectos</a></li>
+    </ul>
+  </nav>
+
+  <!-- Encabezado -->
+  <header>
+    <h1>Copia de Seguridad, Restauración y Recuperación</h1>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <div class="info-box">
+      <h2>Introducción</h2>
+      <p>
+        La copia de seguridad, restauración y recuperación son elementos clave en la gestión de bases de datos, 
+        proporcionando protección contra pérdida de datos y asegurando la continuidad del negocio en caso de fallos.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h2>Copia de Seguridad</h2>
+      <p>
+        Realizar copias de seguridad permite almacenar una versión consistente de la base de datos en un punto en el tiempo. 
+        SQL Server soporta diversos tipos de copias de seguridad, como:
+      </p>
+      <ul>
+        <li><strong>Completa:</strong> Una copia completa de toda la base de datos.</li>
+        <li><strong>Diferencial:</strong> Incluye solo los cambios realizados desde la última copia completa.</li>
+        <li><strong>De registros de transacciones:</strong> Contiene los cambios en el log desde el último backup.</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h2>Ejemplo de Copia de Seguridad</h2>
+      <pre>
+-- Copia de seguridad completa
+BACKUP DATABASE MiBaseDeDatos
+TO DISK = 'C:\Backups\MiBaseDeDatos.bak';
+
+-- Copia de seguridad diferencial
+BACKUP DATABASE MiBaseDeDatos
+TO DISK = 'C:\Backups\MiBaseDeDatos_Diff.bak'
+WITH DIFFERENTIAL;
+
+-- Copia de seguridad del log de transacciones
+BACKUP LOG MiBaseDeDatos
+TO DISK = 'C:\Backups\MiBaseDeDatos_Log.bak';
+      </pre>
+    </div>
+
+    <div class="info-box">
+      <h2>Restauración</h2>
+      <p>
+        Restaurar una base de datos implica recuperar los datos desde una copia de seguridad. Dependiendo del tipo de 
+        backup utilizado, se puede optar por una restauración completa o incremental, incluyendo las copias diferenciales y los logs.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h2>Ejemplo de Restauración</h2>
+      <pre>
+-- Restaurar una copia de seguridad completa
+RESTORE DATABASE MiBaseDeDatos
+FROM DISK = 'C:\Backups\MiBaseDeDatos.bak';
+
+-- Restaurar una copia diferencial
+RESTORE DATABASE MiBaseDeDatos
+FROM DISK = 'C:\Backups\MiBaseDeDatos.bak'
+WITH NORECOVERY;
+
+RESTORE DATABASE MiBaseDeDatos
+FROM DISK = 'C:\Backups\MiBaseDeDatos_Diff.bak'
+WITH RECOVERY;
+      </pre>
+    </div>
+
+    <div class="info-box">
+      <h2>Recuperación</h2>
+      <p>
+        La recuperación en SQL Server asegura que la base de datos esté en un estado consistente después de un fallo. 
+        Esto incluye la aplicación de los logs de transacciones para revertir o completar transacciones pendientes, según sea necesario.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h2>Importancia de las Copias de Seguridad</h2>
+      <p>
+        Las copias de seguridad son esenciales para proteger la integridad de los datos y garantizar la continuidad operativa. 
+        Implementar una estrategia de respaldo adecuada incluye definir la frecuencia de los backups, probar las restauraciones 
+        periódicamente y almacenar las copias de forma segura.
+      </p>
+    </div>
+  </main>
+</body>
+</html>
